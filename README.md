@@ -3,15 +3,18 @@
 > *Problem Statement 06: Trustworthy Digital Information Verification for Rural Communities (Social Impact)*
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-fact--setu.vercel.app-166534?style=for-the-badge&logo=vercel)](https://fact-setu.vercel.app/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Mirror-22C55E?style=for-the-badge&logo=githubpages)](https://nikhillakra2007-tech.github.io/FactSetu/)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-nikhillakra2007--tech%2FFactSetu-1E40AF?style=for-the-badge&logo=github)](https://github.com/nikhillakra2007-tech/FactSetu)
+[![CI/CD Deployment](https://img.shields.io/github/actions/workflow/status/nikhillakra2007-tech/FactSetu/deploy.yml?branch=main&style=for-the-badge&label=CI%2FCD%20Deploy)](https://github.com/nikhillakra2007-tech/FactSetu/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-F59E0B?style=for-the-badge)](LICENSE)
 
 ---
 
 ## 🌐 Live Deployment & Links
-- **🚀 Live Web Application**: **[https://fact-setu.vercel.app/](https://fact-setu.vercel.app/)**
+- **🚀 Primary Live Web App (Vercel)**: **[https://fact-setu.vercel.app/](https://fact-setu.vercel.app/)**
+- **⚡ Secondary Mirror (GitHub Pages)**: **[https://nikhillakra2007-tech.github.io/FactSetu/](https://nikhillakra2007-tech.github.io/FactSetu/)**
 - **📂 GitHub Repository**: **[https://github.com/nikhillakra2007-tech/FactSetu](https://github.com/nikhillakra2007-tech/FactSetu)**
-- **⚡ Status**: Operational 24/7 (Global Edge CDN + Zero-Downtime CI/CD)
+- **⚡ Status**: Operational 24/7 (Global Edge CDN + Automated CI/CD Pipeline)
 
 ---
 
