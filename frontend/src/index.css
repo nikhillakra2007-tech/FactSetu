@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  
+  --color-verified: var(--verified);
+  --color-verified-soft: var(--verified-soft);
+  --color-verified-border: var(--verified-border);
+  
+  --color-contradicted: var(--contradicted);
+  --color-contradicted-soft: var(--contradicted-soft);
+  --color-contradicted-border: var(--contradicted-border);
+  
+  --color-uncertain: var(--uncertain);
+  --color-uncertain-soft: var(--uncertain-soft);
+  --color-uncertain-border: var(--uncertain-border);
+  
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  /* LIGHT MODE TOKENS — Clean Official Government & High Contrast */
+  --background: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-secondary: #F1F5F9;
+  --surface-elevated: #FFFFFF;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --border: #CBD5E1;
+  --border-subtle: #E2E8F0;
+  
+  --primary: #1E40AF;        /* Official Government Trust Blue */
+  --primary-hover: #1E3A8A;
+  --primary-soft: #EFF6FF;
+  
+  --accent: #2563EB;         /* Clean National Blue */
+  --accent-soft: #DBEAFE;
+  
+  --verified: #166534;       /* Clear Forest Green (True / सही) */
+  --verified-soft: #DCFCE7;
+  --verified-border: #86EFAC;
+  
+  --contradicted: #991B1B;   /* Clear Crimson Red (False / गलत) */
+  --contradicted-soft: #FEE2E2;
+  --contradicted-border: #FCA5A5;
+  
+  --uncertain: #92400E;      /* Clear Ochre Amber (Uncertain / अनिश्चित) */
+  --uncertain-soft: #FEF3C7;
+  --uncertain-border: #FCD34D;
+  
+  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --card-shadow-hover: 0 8px 20px -4px rgba(30, 64, 175, 0.12), 0 4px 8px -4px rgba(15, 23, 42, 0.06);
+  --hero-gradient: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%);
+}
+
+.dark {
+  /* DARK MODE TOKENS — Crisp Slate, High Legibility */
+  --background: #0B1120;
+  --surface: #111827;
+  --surface-secondary: #1E293B;
+  --surface-elevated: #243248;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border: #334155;
+  --border-subtle: #1E293B;
+  
+  --primary: #3B82F6;        /* High-contrast Blue */
+  --primary-hover: #60A5FA;
+  --primary-soft: #172554;
+  
+  --accent: #60A5FA;
+  --accent-soft: #1E3A8A;
+  
+  --verified: #22C55E;       /* Clear Bright Green */
+  --verified-soft: #052E16;
+  --verified-border: #166534;
+  
+  --contradicted: #EF4444;   /* Clear Bright Red */
+  --contradicted-soft: #450A0A;
+  --contradicted-border: #991B1B;
+  
+  --uncertain: #F59E0B;      /* Clear Bright Amber */
+  --uncertain-soft: #451A03;
+  --uncertain-border: #B45309;
+  
+  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 12px 30px -4px rgba(59, 130, 246, 0.2), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  --hero-gradient: linear-gradient(135deg, #DBEAFE 0%, #93C5FD 50%, #3B82F6 100%);
+}
+
+/* Accessibility: Large Text mode */
+.large-text-mode {
+  font-size: 112%;
+}
+
+/* Base typography & layout */
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Lenis Scroll Smoothness */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Subtle modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ── UI Utilities with Smooth Dynamic Transitions ── */
+.glass-panel {
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-elevated {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--card-shadow-hover);
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--border));
+}
+
+.card-interactive {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  box-shadow: var(--card-shadow-hover);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  transform: translateY(-2px);
+}
+
+.card-interactive:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* ── Dynamic Spotlight Focus & Dimming Effect ── */
+.spotlight-group {
+  position: relative;
+}
+
+.spotlight-group > * {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+/* When hovering over the group, dim everything except the active card */
+.spotlight-group:hover > *:not(:hover) {
+  opacity: 0.42;
+  filter: brightness(0.88) contrast(95%);
+  transform: scale(0.985);
+}
+
+/* The hovered card zooms in slightly and gets crisp spotlight focus */
+.spotlight-group > *:hover {
+  opacity: 1 !important;
+  filter: brightness(1.02) !important;
+  transform: scale(1.03) translateY(-4px) !important;
+  z-index: 10;
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.25), 0 0 0 1.5px var(--primary);
+}
+
+/* Standalone focus card */
+.focus-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.focus-card:hover {
+  transform: scale(1.025) translateY(-3px);
+  box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.2), 0 0 0 1.5px var(--primary);
+  z-index: 5;
+}
+
+.focus-card:active {
+  transform: scale(0.99) translateY(0);
+}
+
+.gradient-heading {
+  background: var(--hero-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Dynamic Keyframe Animations & Transitions ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96) translateY(4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.75; transform: scale(0.98); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 2.5s ease-in-out infinite;
+}
+
+/* Dynamic Smooth Interactive Transitions */
+button, a, input, textarea, select {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Reduced Motion Mode Support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduced-motion *, .reduced-motion ::before, .reduced-motion ::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ── 2G Low-Bandwidth & Data Saver Mode ── */
+.data-saver-mode {
+  --card-shadow: none !important;
+  --card-shadow-hover: none !important;
+}
+
+.data-saver-mode * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.data-saver-mode .glass-panel {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+.data-saver-mode .spotlight-group:hover > *:not(:hover) {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+.data-saver-mode .spotlight-group > *:hover {
+  transform: none !important;
+}
+
