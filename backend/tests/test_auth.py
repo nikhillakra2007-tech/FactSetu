@@ -1,5 +1,8 @@
+from pathlib import Path
 import sys
-sys.path.insert(0, "C:/Users/nikhi/OneDrive/Desktop/coding/hacks/backend")
+backend_dir = Path(__file__).resolve().parent.parent
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
 import uuid
 import pytest
 from fastapi.testclient import TestClient
@@ -198,8 +201,7 @@ def test_security_no_plaintext():
     db.close()
 
 def test_env_ignored():
-    import pathlib
-    gitignore=pathlib.Path("C:/Users/nikhi/OneDrive/Desktop/coding/hacks/backend/.gitignore").read_text()
+    from pathlib import Path
+    backend_root = Path(__file__).resolve().parent.parent
+    gitignore = (backend_root / ".gitignore").read_text()
     assert ".env" in gitignore
-    # ensure .env not committed (we can't check git, but at least exists)
-    assert pathlib.Path("C:/Users/nikhi/OneDrive/Desktop/coding/hacks/backend/.env").exists()

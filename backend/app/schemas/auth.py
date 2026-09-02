@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Optional
 from datetime import datetime
 
@@ -8,8 +8,9 @@ class SignupRequest(BaseModel):
     password: str = Field(..., min_length=8, max_length=128)
     name: Optional[str] = Field(None, max_length=255)
 
-    @validator("email")
-    def validate_email(cls, v):
+    @field_validator("email")
+    @classmethod
+    def validate_email(cls, v: str) -> str:
         # email-validator will be used in service; just basic check here
         if "@" not in v or "." not in v:
             raise ValueError("Invalid email format")
@@ -22,14 +23,17 @@ class LoginRequest(BaseModel):
     email: str = Field(..., max_length=255)
     password: str = Field(..., max_length=128)
 
-    @validator("email")
-    def validate_email(cls, v):
+    @field_validator("email")
+    @classmethod
+    def validate_email(cls, v: str) -> str:
         if "@" not in v:
             raise ValueError("Invalid email format")
         return v.strip()
 
 
 class UserOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: str
     email: Optional[str]
     name: Optional[str]
@@ -39,9 +43,6 @@ class UserOut(BaseModel):
     is_verified: bool
     created_at: Optional[datetime]
     last_login_at: Optional[datetime]
-
-    class Config:
-        from_attributes = True
 
 
 class TokenResponse(BaseModel):

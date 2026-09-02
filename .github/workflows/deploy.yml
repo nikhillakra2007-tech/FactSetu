@@ -41,5 +41,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./frontend/dist
-          commit_message: "deploy: FactSetu production build [skip ci]"
+          commit_message: "[skip ci] [skip vercel] deploy: FactSetu production build"
 

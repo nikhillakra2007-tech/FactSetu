@@ -1,12 +1,16 @@
 """FACTSETU — Application configuration."""
 
+from pathlib import Path
 from functools import lru_cache
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
+_DEFAULT_DB_FILE = _BACKEND_DIR / "factsetu.db"
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=str(_BACKEND_DIR / ".env"),
         env_file_encoding="utf-8",
         extra="ignore",
     )
@@ -16,7 +20,7 @@ class Settings(BaseSettings):
     secret_key: str = "dev-secret-key-change-in-production"
 
     # Database — defaults to SQLite for hackathon local dev without Postgres.
-    database_url: str = "sqlite:///./factsetu.db"
+    database_url: str = f"sqlite:///{_DEFAULT_DB_FILE.as_posix()}"
 
     cors_origins: str = "http://localhost:3000,http://localhost:5173,http://127.0.0.1:8765"
 
@@ -80,6 +84,9 @@ class Settings(BaseSettings):
         return bool(self.x_client_id and self.x_client_secret and self.x_redirect_uri)
 
     def model_post_init(self, _context) -> None:
+        if self.database_url.startswith("sqlite:///./"):
+            rel_file = self.database_url[len("sqlite:///./"):]
+            self.database_url = f"sqlite:///{(_BACKEND_DIR / rel_file).resolve().as_posix()}"
         # Normalize empty string to None
         if self.gemini_api_key == "":
             self.gemini_api_key = None

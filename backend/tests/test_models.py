@@ -1,5 +1,8 @@
+from pathlib import Path
 import sys
-sys.path.insert(0, "C:/Users/nikhi/OneDrive/Desktop/coding/hacks/backend")
+backend_dir = Path(__file__).resolve().parent.parent
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
 from sqlalchemy import text
 from app.core.database import SessionLocal, Base
 import app.models

@@ -128,9 +128,6 @@ export function AppContent() {
       case '/privacy':
         return <PrivacyPage />;
 
-      case '/login':
-        return <LoginPage onNavigate={navigate} />;
-
       case '/signup':
         return <SignupPage onNavigate={navigate} />;
 
